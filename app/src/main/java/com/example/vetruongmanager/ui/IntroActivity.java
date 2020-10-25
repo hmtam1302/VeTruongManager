@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -48,7 +49,7 @@ public class IntroActivity extends AppCompatActivity {
     private void goToMainActivity() {
         //This method will tkae the user to main actitvity when the animation is finished
         new Handler().postDelayed(() -> {
-            startActivity(new Intent(IntroActivity.this, MainActivity.class));
+            startActivity(new Intent(IntroActivity.this, LoginActivity.class));
             finish();
         }, DELAY);
 
