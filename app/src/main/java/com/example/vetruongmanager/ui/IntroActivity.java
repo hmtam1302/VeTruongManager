@@ -1,11 +1,15 @@
 package com.example.vetruongmanager.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
@@ -14,13 +18,13 @@ import android.widget.ImageView;
 
 import com.example.vetruongmanager.MainActivity;
 import com.example.vetruongmanager.R;
-import com.example.vetruongmanager.data.Ticket;
-import com.example.vetruongmanager.data.TicketManager;
 
 public class IntroActivity extends AppCompatActivity {
 
+    private static final int MY_CAMERA_REQUEST_CODE = 100;
+
     //Constant time delay
-    private final int DELAY = 2500;
+    private final int DELAY = 1500;
 
     //Data for test
     public static TicketManager ticketManager;
@@ -30,6 +34,17 @@ public class IntroActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        int PERMISSION_ALL = 1;
+        String[] PERMISSIONS = new String[0];
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            PERMISSIONS = new String[]{
+                    Manifest.permission.ACCESS_FINE_LOCATION};
+        }
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED) {
+            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.CAMERA}, MY_CAMERA_REQUEST_CODE);
+        }
         super.onCreate(savedInstanceState);
 
 
@@ -71,11 +86,21 @@ public class IntroActivity extends AppCompatActivity {
     }
 
     private void goToMainActivity() {
-        //This method will take the user to main actitvity when the animation is finished
-        new Handler().postDelayed(() -> {
-            startActivity(new Intent(IntroActivity.this, LoginActivity.class));
-            finish();
-        }, DELAY);
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_DENIED) {
+            //This method will take the user to main actitvity when the animation is finished
+            new Handler().postDelayed(() -> {
+                startActivity(new Intent(IntroActivity.this, MainActivity.class));
+                finish();
+            }, DELAY);
+        }
+    }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        if (requestCode == MY_CAMERA_REQUEST_CODE) {
+            startActivity(new Intent(IntroActivity.this, MainActivity.class));
+            finish();
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 }

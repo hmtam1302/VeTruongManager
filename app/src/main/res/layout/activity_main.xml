@@ -16,12 +16,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:background="@color/yellow"
-        app:itemBackground="@color/yellow"
-        android:foreground="?attr/selectableItemBackground"
+        android:background="@color/white"
+        app:itemBackground="@color/white"
         app:itemIconTint="@drawable/tab_color"
         app:itemTextColor="@drawable/tab_color"
-        app:labelVisibilityMode="selected"
-        app:menu="@menu/bottom_navigation_menu"/>
+        app:labelVisibilityMode="auto"
+        app:menu="@menu/bottom_navigation_menu"
+        />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

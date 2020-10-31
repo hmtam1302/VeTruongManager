@@ -10,9 +10,4 @@
         android:id="@+id/qr_check"
         android:icon="@drawable/ic_qr_white"
         android:title="@string/qr_check" />
-
-    <item
-        android:id="@+id/log_file"
-        android:icon="@drawable/ic_log_white"
-        android:title="Log" />
 </menu>
