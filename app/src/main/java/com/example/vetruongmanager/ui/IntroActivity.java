@@ -26,9 +26,6 @@ public class IntroActivity extends AppCompatActivity {
     //Constant time delay
     private final int DELAY = 1500;
 
-    //Data for test
-    public static TicketManager ticketManager;
-
     //Fields (Widgets)
     private ImageView logoView;
 
@@ -55,22 +52,10 @@ public class IntroActivity extends AppCompatActivity {
 
         getWindow().setBackgroundDrawable(null);
 
-        //setUpData
-        setUpData();
-
         //Methods to call
         initializeView();
         animatedLogo();
         goToMainActivity();
-    }
-
-    private void setUpData() {
-        ticketManager = new TicketManager();
-        ticketManager.addNewTicket(new Ticket(1, "Huỳnh Công Hải", "12/1", "0942239400", true));
-        ticketManager.addNewTicket(new Ticket(20, "Hải", "12/1", "1", false));
-        ticketManager.addNewTicket(new Ticket(300, "Hải", "12/1", "1", false));
-        ticketManager.addNewTicket(new Ticket(4, "Hải", "12/1", "1", false));
-        ticketManager.addNewTicket(new Ticket(5, "Hải", "12/1", "1", false));
     }
 
     private void initializeView() {
