@@ -12,22 +12,15 @@ import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.FrameLayout;
 import android.widget.Toast;
 
-import com.example.vetruongmanager.ui.QRCheckFragment;
+import com.example.vetruongmanager.ui.QRCheckin1Fragment;
+import com.example.vetruongmanager.ui.QRCheckin2Fragment;
 import com.example.vetruongmanager.ui.QRConfirmFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-
-import java.lang.reflect.Field;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -53,12 +46,16 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             Fragment fragment;
             switch (item.getItemId()) {
-                case R.id.ticket_list:
+                case R.id.qr_confirm:
                     fragment = new QRConfirmFragment();
                     loadFragment(fragment);
                     return true;
-                case R.id.qr_check:
-                    fragment = new QRCheckFragment();
+                case R.id.qr_checkin1:
+                    fragment = new QRCheckin1Fragment();
+                    loadFragment(fragment);
+                    return true;
+                case R.id.qr_checkin2:
+                    fragment = new QRCheckin2Fragment();
                     loadFragment(fragment);
                     return true;
             }

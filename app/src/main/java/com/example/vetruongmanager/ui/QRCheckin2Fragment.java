@@ -1,20 +1,16 @@
 package com.example.vetruongmanager.ui;
 
-import android.Manifest;
 import android.app.Activity;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.CodeScannerView;
@@ -24,10 +20,10 @@ import com.google.zxing.Result;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link QRCheckFragment#newInstance} factory method to
+ * Use the {@link QRCheckin2Fragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class QRCheckFragment extends Fragment {
+public class QRCheckin2Fragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -42,9 +38,10 @@ public class QRCheckFragment extends Fragment {
 
 
 
-    public QRCheckFragment() {
+    public QRCheckin2Fragment() {
         // Required empty public constructor
     }
+
 
     /**
      * Use this factory method to create a new instance of
@@ -55,8 +52,8 @@ public class QRCheckFragment extends Fragment {
      * @return A new instance of fragment QRCheckFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static QRCheckFragment newInstance(String param1, String param2) {
-        QRCheckFragment fragment = new QRCheckFragment();
+    public static QRCheckin2Fragment newInstance(String param1, String param2) {
+        QRCheckin2Fragment fragment = new QRCheckin2Fragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -79,7 +76,7 @@ public class QRCheckFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         final Activity activity = getActivity();
-        View root = inflater.inflate(R.layout.fragment_qr_check, container, false);
+        View root = inflater.inflate(R.layout.fragment_qr_checkin2, container, false);
 
         CodeScannerView scannerView = root.findViewById(R.id.scanner_view);
         mCodeScanner = new CodeScanner(activity, scannerView);

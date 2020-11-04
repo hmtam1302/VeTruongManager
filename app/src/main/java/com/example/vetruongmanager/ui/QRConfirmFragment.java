@@ -1,7 +1,7 @@
 package com.example.vetruongmanager.ui;
 
 import android.app.Activity;
-import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,13 +14,25 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 import android.widget.Toast;
+
+
 
 import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.CodeScannerView;
 import com.budiyev.android.codescanner.DecodeCallback;
 import com.example.vetruongmanager.R;
+import com.example.vetruongmanager.data.GetDataFromOrderNumber;
+import com.example.vetruongmanager.data.GetDataFromOrderNumber;
 import com.google.zxing.Result;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,6 +40,7 @@ import com.google.zxing.Result;
  * create an instance of this fragment.
  */
 public class QRConfirmFragment extends Fragment {
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -47,6 +60,7 @@ public class QRConfirmFragment extends Fragment {
 
     public QRConfirmFragment() {
         // Required empty public constructor
+
     }
 
     /**
@@ -92,7 +106,11 @@ public class QRConfirmFragment extends Fragment {
                         (keyCode == KeyEvent.KEYCODE_ENTER)) {
                     // Perform action on key press
                     Toast.makeText(activity, searchEditText.getText(), Toast.LENGTH_SHORT).show();
-                    searchData(activity, searchEditText.getText().toString());
+                    try {
+                        searchData(activity, searchEditText.getText().toString());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     return true;
                 }
                 return false;
@@ -121,7 +139,7 @@ public class QRConfirmFragment extends Fragment {
                 mCodeScanner.startPreview();
             }
         });
-        return  rootView;
+        return rootView;
     }
 
 
@@ -135,13 +153,16 @@ public class QRConfirmFragment extends Fragment {
         super.onDestroy();
     }
 
-    public void confirmInfomation(View v){
+    public void confirmInfomation(View v) {
         frameLayout.setVisibility(View.VISIBLE);
     }
 
-    private void searchData(Activity activity, String order_number){
+    private void searchData(Activity activity, String order_number) throws IOException {
+        String url = "https://script.google.com/macros/s/AKfycbwX3LGV7oTZTi4QiTA7DoFp9ZfDKC0qe6U7gTbWanb9XqT0yz4/exec?stt=" + order_number;
+        new GetDataFromOrderNumber(activity).execute(url);
+
         confirmButton.setEnabled(true);
-        confirmButton.setOnClickListener(new View.OnClickListener(){
+        confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 confirmInfomation(v);
@@ -149,5 +170,5 @@ public class QRConfirmFragment extends Fragment {
         });
         editButton.setEnabled(true);
     }
-
 }
+

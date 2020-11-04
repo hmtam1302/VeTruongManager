@@ -4,14 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.QRCheckFragment">
+    tools:context=".ui.QRCheckin1Fragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:id="@+id/qr_checl_title"
+        android:id="@+id/qr_checkin1_title"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:text="@string/qr_check"
+        android:text="@string/qr_checkin1"
         android:textColor="@color/black"
         android:textSize="30sp"
         android:textStyle="bold"
